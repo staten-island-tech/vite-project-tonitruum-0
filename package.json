@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/staten-island-tech/vite-project-tonitruum-0/issues"
   },
-  "homepage": "https://github.com/staten-island-tech/vite-project-tonitruum-0#readme"
+  "homepage": "https://github.com/staten-island-tech/vite-project-tonitruum-0#readme",
+  "dependencies": {
+    "csv-parse": "^5.3.2"
+  }
 }
