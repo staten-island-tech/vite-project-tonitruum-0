@@ -27,7 +27,6 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
   let input = document.getElementById("num");
   numCats = input.value;
-  console.log(input.value);
   input.value = "";
   api.makeHtml(numCats);
   api.makeCats();

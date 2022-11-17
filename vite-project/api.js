@@ -1,3 +1,5 @@
+import * as filter from "./filter.js"
+
 let data = [];
 let html = "";
 
@@ -9,17 +11,15 @@ export async function getCats() {
   let api_url = `https://cataas.com/api/cats?limit=1114`;
   let response = await fetch(api_url);
   data = await response.json();
-  console.log(response);
+  await filter.getTags(data);
 }
 
 export async function makeHtml(numCats) {
   for (let i = 0; i < numCats; i++) {
     let id = getRandom(data, numCats)[i]._id;
-    console.log(id);
     html += `<img src='https://cataas.com/cat/${id}' id='cat${
       i + 1
     }' class='cats'>`;
-    console.log(html);
   }
 }
 
