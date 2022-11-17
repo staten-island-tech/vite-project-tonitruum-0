@@ -1,3 +1,7 @@
+html {
+  box-sizing: border-box;
+}
+
 #app {
   background-color: red;
   height: 100px;
@@ -8,24 +12,18 @@
   height: 30vh;
 }
 
-#outerFlex,
-#innerFlex {
+#buttonContainer {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  padding: 0 3rem;
 }
 
 li {
   list-style-type: none;
 }
 
-#innerFlex {
-  color: red;
-  margin: 30px auto;
-  padding: 0;
-}
-
 .tag {
-  width: 100px;
+  width: auto;
+  justify-content: center;
 }
