@@ -7,3 +7,13 @@
 .cats {
   height: 30vh;
 }
+
+#outerFlex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+li {
+  list-style-type: none;
+}
