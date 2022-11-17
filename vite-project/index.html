@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script src="https://kit.fontawesome.com/5cff78177e.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/5cff78177e.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="icon" type="image" href="./favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat Generator</title>
@@ -10,23 +13,32 @@
   <body>
     <form id="form">
       <label for="num">Number of results:</label>
-      <input type="text" id="num" placeholder="1-x" required pattern="\d+">
-      <input id="submit" type="submit" value="Submit"/>
-      
+      <input type="text" id="num" placeholder="1-x" required pattern="\d+" />
+      <input id="submit" type="submit" value="Submit" />
     </form>
     <form id="mainForm">
       <ul id="outerFlex">
         <li id="tags">
           <ul id="innerFlex">
             <li>
-              <input type="button" id="cute" value="cute">
+              <input class="tag" type="button" id="cute" value="test11" />
+              <input class="tag" type="button" id="cute2" value="test22" />
+              <input class="tag" type="button" id="cute3" value="test33" />
+              <input class="tag" type="button" value="test1" />
+              <input class="tag" type="button" value="test2"/>
+              <input class="tag" type="button" value="test3" />
+              <input class="tag" type="button" value="test4"/>
+              <input class="tag" type="button" value="test5" />
+              <input class="tag" type="button" value="test6"/>
+              <input class="tag" type="button" value="test7" />
+              <input class="tag" type="button" value="test8"/>
+              <input class="tag" type="button" value="test9" />
             </li>
           </ul>
         </li>
       </ul>
     </form>
-    <div id="container">
-    </div>
+    <div id="container"></div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
