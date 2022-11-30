@@ -1,4 +1,4 @@
-import * as filter from "./filter.js"
+import * as filter from "./filter.js";
 
 let data = [];
 let html = "";
@@ -11,6 +11,7 @@ export async function getCats() {
   let api_url = `https://cataas.com/api/cats?limit=1114`;
   let response = await fetch(api_url);
   data = await response.json();
+  console.log(data);
   await filter.getTags(data);
 }
 
