@@ -1,4 +1,4 @@
-import * as filter from "./filter.js";
+import * as filter from "./filter.js"
 
 let data = [];
 let html = "";
@@ -11,7 +11,6 @@ export async function getCats() {
   let api_url = `https://cataas.com/api/cats?limit=1114`;
   let response = await fetch(api_url);
   data = await response.json();
-  console.log(data);
   await filter.getTags(data);
 }
 
@@ -30,9 +29,7 @@ export async function makeCats() {
 }
 
 function getRandom(arr, n) {
-  let result = new Array(n),
-    len = arr.length,
-    taken = new Array(len);
+  let [result, len, taken] = [new Array(n), arr.length, new Array(len)];
   if (n > len)
     throw new RangeError("getRandom: more elements taken than available");
   while (n--) {
