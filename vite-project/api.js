@@ -29,7 +29,9 @@ export async function makeCats() {
 }
 
 function getRandom(arr, n) {
-  let [result, len, taken] = [new Array(n), arr.length, new Array(len)];
+  let result = new Array(n);
+  let len = arr.length
+  let taken = new Array(len);
   if (n > len)
     throw new RangeError("getRandom: more elements taken than available");
   while (n--) {
