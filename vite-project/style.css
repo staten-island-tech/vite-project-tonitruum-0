@@ -1,15 +1,11 @@
+:root {
+  --curve: 1vw;
+  --color1: #f53844;
+  --color2: #42378f;
+}
+
 html {
   box-sizing: border-box;
-}
-
-#app {
-  background-color: red;
-  height: 100px;
-  width: 100px;
-}
-
-.cats {
-  height: 30vh;
 }
 
 #buttonContainer {
@@ -26,4 +22,32 @@ li {
 .tag {
   width: auto;
   justify-content: center;
+}
+
+#container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card {
+  margin: 3vw;
+  width: 20vw;
+  padding: 1vw;
+  height: auto;
+  border-radius: var(--curve);
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(0px) saturate(180%);
+  box-shadow: 0.5em 0.5em 1em;
+  align-items: center;
+  transition: filter 200ms ease, transform 200ms ease;
+}
+
+img {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--curve);
+  align-items: center;
 }

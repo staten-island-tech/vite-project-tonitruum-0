@@ -1,20 +1,18 @@
 import * as filter from "./filter.js"
 
+let DOMSelectors = {
+  container: document.getElementById("container"),
+};
 let data = [];
 let _imgSyncBuffer = [];
 const imgBuffer = new Promise((resolve) => {
   try {
     if (_imgSyncBuffer.length === DOMSelectors.container.childElementCount) {
-        document.body.style.background = "green";
-
       resolve(_imgSyncBuffer); 
     }
   } catch (err) {}
 });
 
-let DOMSelectors = {
-  container: document.getElementById("container"),
-};
 
 export async function getCats() {
   let api_url = `https://cataas.com/api/cats?limit=1114`;
@@ -24,13 +22,22 @@ export async function getCats() {
 }
 
 export async function makeCatsHTML(numCats) {
+  DOMSelectors.container.textContent = "";
   for (let i = 0; i < numCats; i++) {
     let id = getRandom(data, numCats)[i]._id;
+
     const img = new Image();
-    img.onload = () => { DOMSelectors.container.appendChild(img); }
-    img.src = `https://cataas.com/cat/${id}`;
+/*     img.src = 'https://ak.picdn.net/shutterstock/videos/1012114871/thumb/1.jpg';
+ */
+img.load(`https://cataas.com/cat/${id}`);
+    const div = document.createElement("div");
+    DOMSelectors.container.appendChild(div);
+    div.classList.add('card');
+    div.appendChild(img);
+
+
+    //img.onload = () => { img.src = `https://cataas.com/cat/${id}`; }
     img.classList.add('cats');
-    img.id = `cat${i + 1}`;
   };
 return imgBuffer;
 }
@@ -47,3 +54,31 @@ function getRandom(arr, n) {
   }
   return result;
 }
+
+/* 
+Image.prototype.load = function(url){
+  var thisImg = this;
+  console.log(thisImg);
+  var xmlHTTP = new XMLHttpRequest();
+  xmlHTTP.open('GET', url,true);
+  xmlHTTP.responseType = 'arraybuffer';
+  xmlHTTP.onload = function(e) {
+      var blob = new Blob([this.response]);
+      thisImg.src = window.URL.createObjectURL(blob);
+    };
+  xmlHTTP.onprogress = function(e) {
+      thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
+      progressBar(thisImg, thisImg.completedPercentage);
+  };
+  xmlHTTP.onloadstart = function() {
+      thisImg.completedPercentage = 0;
+  };
+  xmlHTTP.send();
+  
+};
+
+Image.prototype.completedPercentage = 0;
+
+function progressBar (img, percent) {
+  img.insertAdjacentHTML("afterend", percent);
+} */

@@ -46,24 +46,59 @@ async function makeButtonHtml(arr){
 
 function clickHandler(){
   document.querySelectorAll(".tag").forEach((t) => {
-    t.addEventListener("click", getID)
+    t.addEventListener("click", getFilteredCats)
   })
 }
 
-function getID(){
-  getFilteredCats(this.id);
-}
-
 function getFilteredCats(idTag){
+  idTag = this.id
   selectors.container.textContent = "";
   let i = 0;
   api.forEach((cat) => {
     if (cat.tags.includes(idTag)){
-      selectors.container.insertAdjacentHTML("beforeend", `<img src='https://cataas.com/cat/${cat._id}' id='cat${i + 1}' class='cats'>`)
-      i++;
+
+    const img = new Image();
+    img.load(`https://cataas.com/cat/${cat._id}`);
+
+    const div = document.createElement("div");
+    selectors.container.appendChild(div);
+    div.classList.add('card');
+    div.appendChild(img);
+
+    div.appendChild(document.createElement("p"));
+    img.classList.add('cats');
     }
   })
 }
 
 
 
+
+Image.prototype.load = function(url){
+  var thisImg = this;
+  var xmlHTTP = new XMLHttpRequest();
+  xmlHTTP.open('GET', url,true);
+  xmlHTTP.responseType = 'arraybuffer';
+  xmlHTTP.onload = function(e) {
+    var blob = new Blob([this.response]);
+    thisImg.src = window.URL.createObjectURL(blob);
+  };
+  xmlHTTP.onprogress = function(e) {
+      thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
+      if ( thisImg.completedPercentage.prevValue !== thisImg.completedPercentage ) {
+        progressBar(thisImg, thisImg.completedPercentage);
+      }      
+    };
+    xmlHTTP.onloadstart = function() {
+      thisImg.completedPercentage = 0;
+      progressBar(thisImg, thisImg.completedPercentage);
+  };
+  xmlHTTP.send();
+  
+};
+
+Image.prototype.completedPercentage = 0;
+
+function progressBar (img, percent) {
+  img.nextSibling.innerHTML = "test";
+}

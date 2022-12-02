@@ -9,12 +9,9 @@ await api.getCats();
 await api.makeCatsHTML(10);
 
 form.addEventListener("submit", function (e) {
-  let numCats = 0;
   e.preventDefault();
   let input = document.getElementById("num");
-  numCats = input.value;
+  let numCats = input.value;
   input.value = "";
-  api.makeHtml(numCats);
-  api.makeCats();
+  api.makeCatsHTML(numCats);
 });
-
