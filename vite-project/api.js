@@ -17,9 +17,7 @@ export async function getCats() {
 export async function makeHtml(numCats) {
   for (let i = 0; i < numCats; i++) {
     let id = getRandom(data, numCats)[i]._id;
-    html += `<img src='https://cataas.com/cat/${id}' id='cat${
-      i + 1
-    }' class='cats'>`;
+    html += `<img src='https://cataas.com/cat/${id}' id='cat${i + 1}' class='cats'>`;
   }
 }
 

@@ -1,3 +1,6 @@
+let selectors = {
+  container: document.getElementById("container"),
+}
 let api = [];
 
 export async function getTags(data) {
@@ -50,11 +53,15 @@ function clickHandler(){
 function getID(){
   getFilteredCats(this.id);
 }
-// ^ have id, make function to display all the cats with the id that was clicked
 
 function getFilteredCats(idTag){
+  selectors.container.textContent = "";
+  let i = 0;
   api.forEach((cat) => {
-    if (cat.tags.includes(idTag))
+    if (cat.tags.includes(idTag)){
+      selectors.container.insertAdjacentHTML("beforeend", `<img src='https://cataas.com/cat/${cat._id}' id='cat${i + 1}' class='cats'>`)
+      i++;
+    }
   })
 }
 

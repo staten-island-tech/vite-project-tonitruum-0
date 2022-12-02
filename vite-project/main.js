@@ -19,7 +19,7 @@ Promise.all(
         })
     )
 ).then(() => {
-  console.log("images finished loading");
+  alert("images finished loading");
 });
 
 form.addEventListener("submit", function (e) {
