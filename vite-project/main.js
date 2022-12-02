@@ -6,21 +6,7 @@ let DOMSelectors = {
 };
 
 await api.getCats();
-await api.makeHtml(10);
-await api.makeCats(10);
-
-Promise.all(
-  Array.from(document.images)
-    .filter((img) => !img.complete)
-    .map(
-      (img) =>
-        new Promise((resolve) => {
-          img.onload = img.onerror = resolve;
-        })
-    )
-).then(() => {
-  alert("images finished loading");
-});
+await api.makeCatsHTML(10);
 
 form.addEventListener("submit", function (e) {
   let numCats = 0;
@@ -31,3 +17,4 @@ form.addEventListener("submit", function (e) {
   api.makeHtml(numCats);
   api.makeCats();
 });
+

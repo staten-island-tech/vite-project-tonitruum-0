@@ -1,7 +1,16 @@
 import * as filter from "./filter.js"
 
 let data = [];
-let html = "";
+let _imgSyncBuffer = [];
+const imgBuffer = new Promise((resolve) => {
+  try {
+    if (_imgSyncBuffer.length === DOMSelectors.container.childElementCount) {
+        document.body.style.background = "green";
+
+      resolve(_imgSyncBuffer); 
+    }
+  } catch (err) {}
+});
 
 let DOMSelectors = {
   container: document.getElementById("container"),
@@ -14,18 +23,17 @@ export async function getCats() {
   await filter.getTags(data);
 }
 
-export async function makeHtml(numCats) {
+export async function makeCatsHTML(numCats) {
   for (let i = 0; i < numCats; i++) {
     let id = getRandom(data, numCats)[i]._id;
-    html += `<img src='https://cataas.com/cat/${id}' id='cat${i + 1}' class='cats'>`;
-  }
+    const img = new Image();
+    img.onload = () => { DOMSelectors.container.appendChild(img); }
+    img.src = `https://cataas.com/cat/${id}`;
+    img.classList.add('cats');
+    img.id = `cat${i + 1}`;
+  };
+return imgBuffer;
 }
-
-export async function makeCats() {
-  DOMSelectors.container.innerHTML = html;
-  html = "";
-}
-
 function getRandom(arr, n) {
   let result = new Array(n);
   let len = arr.length

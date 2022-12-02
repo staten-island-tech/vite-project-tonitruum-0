@@ -65,8 +65,5 @@ function getFilteredCats(idTag){
   })
 }
 
-function changeFilter(button){
-  console.log(button);
-}
 
 
