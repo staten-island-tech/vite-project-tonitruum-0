@@ -1,25 +1,7 @@
-export async function getqTags(data) {
-  let result = "";
-  let result1 = [];
-  data.forEach((d) => {
-    result = data.map((d) => d.tags);
-  });
-  let i = 0;
-  data.forEach((d) => {
-    if (d.tags.includes("cute") === true) {
-      result1.push(d._id);
-    }
-  });
-  console.log(result1);
-}
-
-function filterTags(data) {}
-
-
-/* for each tag -> for each thing in data check if d.tags includs (tag value)
-if === true then console.log (tag) */
+let api = [];
 
 export async function getTags(data) {
+  api = data;
   let tag = [];
   let tagArr = [];
   let api_url = `https://cataas.com/api/tags`;
@@ -49,11 +31,35 @@ async function bubbleSort(arr){
       }
     }
   }
-  makeButtonHtml(arr);
+  await makeButtonHtml(arr);
 }
 
-function makeButtonHtml(arr){
+async function makeButtonHtml(arr){
   for (let i = 0; i < arr.length; i++){
-    document.getElementById("buttonContainer").insertAdjacentHTML("beforeend", `<button class="tag" id="${arr[i]}" value="${arr[i][0]}">${arr[i][0]}</button>`);
+    document.getElementById("buttonContainer").insertAdjacentHTML("beforeend", `<button class="tag" id="${arr[i][0]}" value="${arr[i][0]} - ${arr[i][1]}">${arr[i][0]}</button>`);
   }
+  clickHandler();
 }
+
+function clickHandler(){
+  document.querySelectorAll(".tag").forEach((t) => {
+    t.addEventListener("click", getID)
+  })
+}
+
+function getID(){
+  getFilteredCats(this.id);
+}
+// ^ have id, make function to display all the cats with the id that was clicked
+
+function getFilteredCats(idTag){
+  api.forEach((cat) => {
+    if (cat.tags.includes(idTag))
+  })
+}
+
+function changeFilter(button){
+  console.log(button);
+}
+
+
