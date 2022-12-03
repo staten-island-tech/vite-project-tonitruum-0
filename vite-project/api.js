@@ -27,16 +27,17 @@ export async function makeCatsHTML(numCats) {
     let id = getRandom(data, numCats)[i]._id;
 
     const img = new Image();
-/*     img.src = 'https://ak.picdn.net/shutterstock/videos/1012114871/thumb/1.jpg';
- */
-img.load(`https://cataas.com/cat/${id}`);
+    img.src = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.imgflip.com%2F2%2F103rdm.jpg&f=1&nofb=1&ipt=1c1a329e8198cf4984d403da79c9a3cca32e59dffa032c0d80c2edb1505e7f6a&ipo=images';
     const div = document.createElement("div");
     DOMSelectors.container.appendChild(div);
     div.classList.add('card');
     div.appendChild(img);
 
 
-    //img.onload = () => { img.src = `https://cataas.com/cat/${id}`; }
+    img.onload = () => { 
+    img.src = `https://cataas.com/cat/${id}`;
+    div.appendChild(img);
+  }
     img.classList.add('cats');
   };
 return imgBuffer;
@@ -54,31 +55,3 @@ function getRandom(arr, n) {
   }
   return result;
 }
-
-/* 
-Image.prototype.load = function(url){
-  var thisImg = this;
-  console.log(thisImg);
-  var xmlHTTP = new XMLHttpRequest();
-  xmlHTTP.open('GET', url,true);
-  xmlHTTP.responseType = 'arraybuffer';
-  xmlHTTP.onload = function(e) {
-      var blob = new Blob([this.response]);
-      thisImg.src = window.URL.createObjectURL(blob);
-    };
-  xmlHTTP.onprogress = function(e) {
-      thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
-      progressBar(thisImg, thisImg.completedPercentage);
-  };
-  xmlHTTP.onloadstart = function() {
-      thisImg.completedPercentage = 0;
-  };
-  xmlHTTP.send();
-  
-};
-
-Image.prototype.completedPercentage = 0;
-
-function progressBar (img, percent) {
-  img.insertAdjacentHTML("afterend", percent);
-} */

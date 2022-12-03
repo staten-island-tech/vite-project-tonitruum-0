@@ -55,50 +55,21 @@ function getFilteredCats(idTag){
   selectors.container.textContent = "";
   let i = 0;
   api.forEach((cat) => {
-    if (cat.tags.includes(idTag)){
-
+    if (cat.tags.includes(idTag) && i < 12){
+    i++;
     const img = new Image();
-    img.load(`https://cataas.com/cat/${cat._id}`);
-
+    img.src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.imgflip.com%2F2%2F103rdm.jpg&f=1&nofb=1&ipt=1c1a329e8198cf4984d403da79c9a3cca32e59dffa032c0d80c2edb1505e7f6a&ipo=images";
     const div = document.createElement("div");
     selectors.container.appendChild(div);
     div.classList.add('card');
-    div.appendChild(img);
 
-    div.appendChild(document.createElement("p"));
+    
+    img.onload = () => {
+      img.src = `https://cataas.com/cat/${cat._id}`;
+      div.appendChild(img)
+    };
     img.classList.add('cats');
+
     }
   })
-}
-
-
-
-
-Image.prototype.load = function(url){
-  var thisImg = this;
-  var xmlHTTP = new XMLHttpRequest();
-  xmlHTTP.open('GET', url,true);
-  xmlHTTP.responseType = 'arraybuffer';
-  xmlHTTP.onload = function(e) {
-    var blob = new Blob([this.response]);
-    thisImg.src = window.URL.createObjectURL(blob);
-  };
-  xmlHTTP.onprogress = function(e) {
-      thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
-      if ( thisImg.completedPercentage.prevValue !== thisImg.completedPercentage ) {
-        progressBar(thisImg, thisImg.completedPercentage);
-      }      
-    };
-    xmlHTTP.onloadstart = function() {
-      thisImg.completedPercentage = 0;
-      progressBar(thisImg, thisImg.completedPercentage);
-  };
-  xmlHTTP.send();
-  
-};
-
-Image.prototype.completedPercentage = 0;
-
-function progressBar (img, percent) {
-  img.nextSibling.innerHTML = "test";
 }
