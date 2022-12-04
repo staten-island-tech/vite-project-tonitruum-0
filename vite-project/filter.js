@@ -1,6 +1,7 @@
-let selectors = {
+let DOMSelectors = {
   container: document.getElementById("container"),
-}
+};
+let tagArr = [];
 let api = [];
 
 export async function getTags(data) {
@@ -39,7 +40,7 @@ async function bubbleSort(arr){
 
 async function makeButtonHtml(arr){
   for (let i = 0; i < arr.length; i++){
-    document.getElementById("buttonContainer").insertAdjacentHTML("beforeend", `<button class="tag" id="${arr[i][0]}" value="${arr[i][0]} - ${arr[i][1]}">${arr[i][0]}</button>`);
+    document.getElementById("buttonContainer").insertAdjacentHTML("beforeend", `<button class="tag" id="${arr[i][0]}" value="${arr[i][0]} - ${arr[i][1]}">${arr[i][0]} - ${arr[i][1]}</button>`);
   }
   clickHandler();
 }
@@ -50,26 +51,58 @@ function clickHandler(){
   })
 }
 
-function getFilteredCats(idTag){
-  idTag = this.id
-  selectors.container.textContent = "";
+
+export function getFilteredCats(){
+  let idTag = this.id;
+  DOMSelectors.container.textContent = "";
+  DOMSelectors.container.className = idTag;
   let i = 0;
+  console.log(tagArr);
+  api.forEach((cat) => {
+    if (cat.tags.includes(idTag)){
+      tagArr.push(cat._id);
+    }
+  })
   api.forEach((cat) => {
     if (cat.tags.includes(idTag) && i < 12){
     i++;
     const img = new Image();
-    img.src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.imgflip.com%2F2%2F103rdm.jpg&f=1&nofb=1&ipt=1c1a329e8198cf4984d403da79c9a3cca32e59dffa032c0d80c2edb1505e7f6a&ipo=images";
     const div = document.createElement("div");
-    selectors.container.appendChild(div);
+    DOMSelectors.container.appendChild(div);
+    div.appendChild(img)
+    div.style.visibility = "hidden";
+    img.onload = () => { div.style.visibility = "visible"; }
+    img.src = `https://cataas.com/cat/${cat._id}`;
     div.classList.add('card');
-
-    
-    img.onload = () => {
-      img.src = `https://cataas.com/cat/${cat._id}`;
-      div.appendChild(img)
-    };
     img.classList.add('cats');
-
-    }
-  })
+  }
+})
+for (let i = 0; i < 12; i++){
+  tagArr.shift();
 }
+}
+
+export function paginatedCats(idTag){
+  DOMSelectors.container.className = idTag;
+  let len = 12;
+  if (tagArr.length < 12){
+    len = tagArr.length
+  }
+  else {
+    len = 12;
+  }
+  for (let i = 0; i < len; i++){
+      const img = new Image();
+      const div = document.createElement("div");
+      DOMSelectors.container.appendChild(div);
+      div.appendChild(img)
+      div.style.visibility = "hidden";
+      img.onload = () => { div.style.visibility = "visible"; }
+      img.src = `https://cataas.com/cat/${tagArr[i]}`;
+      div.classList.add('card');
+      img.classList.add('cats');  
+    }
+    for (let i = 0; i < 12; i++){
+      tagArr.shift();
+    }
+  }
