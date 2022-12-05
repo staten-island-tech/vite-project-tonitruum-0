@@ -11,7 +11,8 @@ export function globalCreate(idIdentifier) {
     div.classList.add("card");
 
     div.appendChild(p);
-    p.textContent = "Loading...";
+    p.textContent = "L";
+    p.classList.add("loading");
 
     img.src = `https://cataas.com/cat/${idIdentifier}`;
 
