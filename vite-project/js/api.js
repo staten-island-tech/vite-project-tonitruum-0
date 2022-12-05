@@ -1,4 +1,5 @@
 import * as filter from "./filter.js";
+import { globalCreate } from "./globalCreate.js";
 
 let DOMSelectors = {
   container: document.getElementById("container"),
@@ -26,16 +27,7 @@ export async function makeCatsHTML(numCats) {
   DOMSelectors.container.textContent = "";
   for (let i = 0; i < numCats; i++) {
     let id = getRandom(data, numCats)[i]._id;
-    
-    const img = new Image();
-    const div = document.createElement("div");
-    DOMSelectors.container.appendChild(div);
-    div.style.visibility = "hidden";
-    img.onload = () => { div.style.visibility = "visible"; }
-    div.classList.add("card");
-    div.appendChild(img);
-    img.src = `https://cataas.com/cat/${id}`;
-    img.classList.add("cats");
+    globalCreate(id);
   }
   return imgBuffer;
 }
@@ -63,15 +55,7 @@ export function paginatedCats() {
     len = 12;
   }
   for (let i = 0; i < len; i++) {
-    const img = new Image();
-    const div = document.createElement("div");
-    DOMSelectors.container.appendChild(div);
-    img.src = `https://cataas.com/cat/${randomPaginationData[i]._id}`;
-    div.classList.add("card");
-    div.style.visibility = "hidden";
-    img.onload = () => { div.style.visibility = "visible"; }
-    div.appendChild(img);
-    img.classList.add("cats");
+    globalCreate(randomPaginationData[i]._id);
   }
   for (let i = 0; i < 12; i++) {
     randomPaginationData.shift();

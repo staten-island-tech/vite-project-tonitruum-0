@@ -1,3 +1,5 @@
+import { globalCreate } from "./globalCreate.js"
+
 let DOMSelectors = {
   container: document.getElementById("container"),
 };
@@ -65,15 +67,7 @@ export function getFilteredCats(){
   api.forEach((cat) => {
     if (cat.tags.includes(idTag) && i < 12){
     i++;
-    const img = new Image();
-    const div = document.createElement("div");
-    DOMSelectors.container.appendChild(div);
-    div.appendChild(img)
-    div.style.visibility = "hidden";
-    img.onload = () => { div.style.visibility = "visible"; }
-    img.src = `https://cataas.com/cat/${cat._id}`;
-    div.classList.add('card');
-    img.classList.add('cats');
+    globalCreate(cat._id);
   }
 })
 for (let i = 0; i < 12; i++){
@@ -91,15 +85,7 @@ export function paginatedCats(idTag){
     len = 12;
   }
   for (let i = 0; i < len; i++){
-      const img = new Image();
-      const div = document.createElement("div");
-      DOMSelectors.container.appendChild(div);
-      div.appendChild(img)
-      div.style.visibility = "hidden";
-      img.onload = () => { div.style.visibility = "visible"; }
-      img.src = `https://cataas.com/cat/${tagArr[i]}`;
-      div.classList.add('card');
-      img.classList.add('cats');  
+      globalCreate(tagArr[i]);
     }
     for (let i = 0; i < 12; i++){
       tagArr.shift();
