@@ -1,11 +1,12 @@
 :root {
   --curve: 1vw;
-  --color1: #f53844;
-  --color2: #42378f;
+  --cardColor: rgba(0, 0, 0, 0.75);
+  --htmlColor: #252525;
 }
 
 html {
   box-sizing: border-box;
+  background-color: var(--htmlColor);
 }
 
 #buttonContainer {
@@ -37,11 +38,10 @@ li {
   padding: 1vw;
   height: auto;
   border-radius: var(--curve);
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(0px) saturate(180%);
+  background-color: var(--cardColor);
+  backdrop-filter: blur(16px) saturate(180%);
   box-shadow: 0.5em 0.5em 1em;
   align-items: center;
-  transition: filter 200ms ease, transform 200ms ease;
 }
 
 img {
