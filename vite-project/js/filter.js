@@ -57,7 +57,6 @@ export function getFilteredCats(){
   DOMSelectors.container.textContent = "";
   DOMSelectors.container.className = idTag;
   let i = 0;
-  console.log(tagArr);
   api.forEach((cat) => {
     if (cat.tags.includes(idTag)){
       tagArr.push(cat._id);

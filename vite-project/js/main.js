@@ -1,4 +1,4 @@
-import "./style.css";
+import "../css/style.css";
 import * as api from "./api.js";
 import * as filter from "./filter.js";
 
@@ -27,10 +27,8 @@ function display() {
   let tag = DOMSelectors.container.className;
   if (tag != "basic"){
     filter.paginatedCats(tag);
-    console.log(tag);
   }
   else {
     api.paginatedCats();
-    console.log("yes");
   }
 }

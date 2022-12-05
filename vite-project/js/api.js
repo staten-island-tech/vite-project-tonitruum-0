@@ -4,7 +4,7 @@ let DOMSelectors = {
   container: document.getElementById("container"),
 };
 let data = [];
-let paginatedData = [];
+let paginationData = [];
 let _imgSyncBuffer = [];
 const imgBuffer = new Promise((resolve) => {
   try {
@@ -17,7 +17,7 @@ const imgBuffer = new Promise((resolve) => {
 export async function getCats() {
   let api_url = `https://cataas.com/api/cats?limit=1114`;
   let response = await fetch(api_url);
-  paginatedData = data = await response.json();
+  paginationData = data = await response.json();
   await filter.getTags(data);
 }
 
@@ -26,7 +26,7 @@ export async function makeCatsHTML(numCats) {
   DOMSelectors.container.textContent = "";
   for (let i = 0; i < numCats; i++) {
     let id = getRandom(data, numCats)[i]._id;
-
+    
     const img = new Image();
     const div = document.createElement("div");
     DOMSelectors.container.appendChild(div);
@@ -44,7 +44,7 @@ function getRandom(arr, n) {
   let len = arr.length;
   let taken = new Array(len);
   if (n > len)
-    throw new RangeError("getRandom: more elements taken than available");
+  throw new RangeError("getRandom: more elements taken than available");
   while (n--) {
     let x = Math.floor(Math.random() * len);
     result[n] = arr[x in taken ? taken[x] : x];
@@ -54,11 +54,11 @@ function getRandom(arr, n) {
 }
 
 export function paginatedCats() {
-  console.log(paginatedData);
+  let randomPaginationData = getRandom(paginationData, paginationData.length);
   DOMSelectors.container.className = "basic";
   let len = 12;
-  if (paginatedData.length < 12) {
-    len = paginatedData.length;
+  if (randomPaginationData.length < 12) {
+    len = randomPaginationData.length;
   } else {
     len = 12;
   }
@@ -66,7 +66,7 @@ export function paginatedCats() {
     const img = new Image();
     const div = document.createElement("div");
     DOMSelectors.container.appendChild(div);
-    img.src = `https://cataas.com/cat/${paginatedData[i]._id}`;
+    img.src = `https://cataas.com/cat/${randomPaginationData[i]._id}`;
     div.classList.add("card");
     div.style.visibility = "hidden";
     img.onload = () => { div.style.visibility = "visible"; }
@@ -74,6 +74,6 @@ export function paginatedCats() {
     img.classList.add("cats");
   }
   for (let i = 0; i < 12; i++) {
-    paginatedData.shift();
+    randomPaginationData.shift();
   }
 }
