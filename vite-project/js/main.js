@@ -7,7 +7,7 @@ let DOMSelectors = {
 };
 
 await api.getCats();
-await api.makeCatsHTML(12);
+api.makeCatsHTML(12);
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -20,12 +20,6 @@ form.addEventListener("submit", function (e) {
 window.onscroll = function () {
   if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
     display();
-    console.log(
-      window.innerHeight,
-      window.pageYOffset,
-      document.body.offsetHeight,
-      window.innerHeight + window.pageYOffset
-    );
   }
 };
 
