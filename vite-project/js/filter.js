@@ -42,7 +42,7 @@ async function bubbleSort(arr){
 
 async function makeButtonHtml(arr){
   for (let i = 0; i < arr.length; i++){
-    document.getElementById("buttonContainer").insertAdjacentHTML("beforeend", `<button class="tag" id="${arr[i][0]}" value="${arr[i][0]} - ${arr[i][1]}">${arr[i][0]} - ${arr[i][1]}</button>`);
+    document.getElementById("buttonContainer").insertAdjacentHTML("beforeend", `<div class="tag" id="${arr[i][0]}" value="${arr[i][0]} - ${arr[i][1]}">${arr[i][0]} - <span class="number">${arr[i][1]}</span></div>`);
   }
   clickHandler();
 }
@@ -77,7 +77,7 @@ for (let i = 0; i < 12; i++){
 
 export function paginatedCats(idTag){
   DOMSelectors.container.className = idTag;
-  let len = 12;
+  let len = "";
   if (tagArr.length < 12){
     len = tagArr.length
   }
@@ -91,3 +91,8 @@ export function paginatedCats(idTag){
       tagArr.shift();
     }
   }
+
+let button = document.getElementById("filterButton");
+button.addEventListener('click', function(b) {
+  button.classList.toggle('open')
+})

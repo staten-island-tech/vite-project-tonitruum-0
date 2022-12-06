@@ -2,28 +2,27 @@
   --curve: 1vw;
   --cardColor: rgba(0, 0, 0, 0.75);
   --htmlColor: #252525;
+  --textColor: white;
 }
 
 html {
   box-sizing: border-box;
   background-color: var(--htmlColor);
+  scrollbar-width: thin;
+  scrollbar-color: red green;
 }
 
 #buttonContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   flex-wrap: wrap;
-  padding: 0 3rem;
+  flex-direction: column;
 }
 
 li {
   list-style-type: none;
 }
 
-.tag {
-  width: auto;
-  justify-content: center;
-}
 
 #container {
   display: flex;
@@ -54,4 +53,39 @@ img {
 
 .loading {
   text-align: center;
+  color: var(--textColor);
+}
+
+#filter {
+  max-height: 0;
+  overflow-y: hidden;
+  transition: all .4s ease-in-out;
+  position: absolute;
+  background-color: #272727;
+  z-index: 1;
+  color: var(--textColor);
+}
+
+#filterButton.open > #filter {
+  border-radius: var(--curve);
+  max-height: 30vh;
+  overflow-y: scroll;
+  transition: all .4s ease-in-out;
+  scrollbar-color: red green;
+  scrollbar-width: thin;
+}
+
+#filterButton {
+  cursor: default;
+  color: var(--textColor);
+}
+
+.tag {
+  cursor: default;
+  margin: .2rem;
+  color: red;
+}
+
+.number {
+  color: green;
 }
