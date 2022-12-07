@@ -70,14 +70,17 @@ img {
   border-radius: var(--curve);
   max-height: 30vh;
   overflow-y: scroll;
-  transition: all .4s ease-in-out;
   scrollbar-color: red green;
   scrollbar-width: thin;
+  border-top: green solid 2px;
+  border-left: green solid 2px;
+  border-bottom: green solid 2px;
+  transition: all .4s ease-in-out;
 }
 
 #filterButton {
   cursor: default;
-  color: var(--textColor);
+  color: black;
 }
 
 .tag {

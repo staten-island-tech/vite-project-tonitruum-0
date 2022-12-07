@@ -11,8 +11,14 @@ export async function getTags(data) {
   let tag = [];
   let tagArr = [];
   let api_url = `https://cataas.com/api/tags`;
-  let response = await fetch(api_url);
-  tag = await response.json();
+  try{
+    let response = await fetch(api_url);
+    tag = await response.json();
+  } 
+  catch (error) {
+    alert("Error caught: check console");
+    console.error(error);
+  }
   tag.forEach((t) => {
     let num = 0;
     data.forEach((d) => {

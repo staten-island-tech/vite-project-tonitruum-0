@@ -16,9 +16,15 @@ const imgBuffer = new Promise((resolve) => {
 });
 
 export async function getCats() {
+  try {
   let api_url = `https://cataas.com/api/cats?limit=1114`;
   let response = await fetch(api_url);
   paginationData = data = await response.json();
+  }
+  catch (error) {
+    alert("Error caught: check console");
+    console.error(error);
+  }
   await filter.getTags(data);
 }
 
