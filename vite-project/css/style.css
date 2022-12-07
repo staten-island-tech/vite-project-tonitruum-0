@@ -23,6 +23,14 @@ li {
   list-style-type: none;
 }
 
+input {
+  height: 2vh;
+  width: auto;
+}
+
+button {
+  height: 2vh;
+}
 
 #container {
   display: flex;
