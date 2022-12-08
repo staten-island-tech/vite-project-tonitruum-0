@@ -24,12 +24,27 @@ li {
 }
 
 input {
+  margin-bottom: 2px;
   height: 2vh;
   width: auto;
+  background-color: green;
+  color: red;
+  font-weight: 1000;
+  border-color: red;
+  height: 30px;
+}
+
+::placeholder {
+  opacity: 1 !important;
 }
 
 button {
-  height: 2vh;
+  height: 30px;
+  background-color: green;
+  color: red;
+  font-weight: 1000;
+  border-color: red;
+  margin-bottom: 2px;
 }
 
 #container {
@@ -67,7 +82,7 @@ img {
 #filter {
   max-height: 0;
   overflow-y: hidden;
-  transition: all .4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: absolute;
   background-color: #272727;
   z-index: 1;
@@ -83,20 +98,25 @@ img {
   border-top: green solid 2px;
   border-left: green solid 2px;
   border-bottom: green solid 2px;
-  transition: all .4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 #filterButton {
   cursor: default;
-  color: black;
 }
 
 .tag {
   cursor: default;
-  margin: .2rem;
+  margin: 0.2rem;
   color: red;
 }
 
 .number {
   color: green;
+}
+
+a {
+  color: red;
+  border-color: red;
+  height: 30px;
 }
